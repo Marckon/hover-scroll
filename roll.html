@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>roll</title>
+    <style type="text/css">
+        #area{
+            width:200px;
+            height:150px;
+            background-color: aqua;
+            border-radius: 10px;
+            border:solid 3px cornflowerblue;
+            margin:100px auto;
+            box-shadow: -5px 5px 20px black;
+            overflow: hidden;
+        }
+        #list,#list2{
+            font: 16px/1.2em  'Microsoft YaHei UI';
+            color: darkslategray;
+            cursor:pointer;
+        }
+        li{
+            height:18px;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload=function () {
+            var content1=document.getElementById('list');
+            var content2=document.getElementById('list2');
+            var liH=document.getElementsByTagName('li')[0].style.height;
+            //content2.innerHTML=content1.innerHTML;
+            var area=document.getElementById('area');
+            myTimer=setInterval(moveUp,50);
+            function moveUp() {
+                if(area.scrollTop%18==0){
+                    clearInterval(myTimer);
+                    timeout=setTimeout(function () {
+                        myTimer=setInterval(moveUp,50);
+                    },1000);
+                }
+                if(area.scrollTop>=content1.offsetHeight+16){
+                    area.scrollTop=0;
+                }else {
+                    area.scrollTop+=1;
+                }
+            }
+            area.onmouseover=function () {
+                clearInterval(myTimer);
+                clearTimeout(timeout);
+            }
+            area.onmouseout=function (){
+                myTimer= setInterval(moveUp,50);
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="area">
+        <ol id="list">
+            <li>this is number 1</li>
+            <li>this is number 2</li>
+            <li>this is number 3</li>
+            <li>this is number 4</li>
+            <li>this is number 5</li>
+            <li>this is number 6</li>
+            <li>this is number 7</li>
+            <li>this is number 8</li>
+            <li>this is number 9</li>
+        </ol>
+        <ol id="list2">
+            <li>this is number 1</li>
+            <li>this is number 2</li>
+            <li>this is number 3</li>
+            <li>this is number 4</li>
+            <li>this is number 5</li>
+            <li>this is number 6</li>
+            <li>this is number 7</li>
+            <li>this is number 8</li>
+            <li>this is number 9</li>
+        </ol>
+    </div>
+</body>
+</html>
